@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Отделы</title>
+    <style>
+        main{
+            font-family: "Georgia", serif;
+
+        }
+        .table{
+            line-height: 1;
+            text-align:center;
+            font-family: "Georgia", serif;
+        }
+    </style>
+</head>
+<h1 align="center">Церковь</h1>
+<body>
+<div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <header th:insert="blocks/header :: headerdefault"/>
+    <h3 align="center">Изменить отдел</h3>
+
+    <div class="input-group mb-3">
+        <form th:action="@{'/department/' + ${department.id} + '/edit'}" method="post" th:object="${department}">
+            <p th:text="${department.departmentName}"></p>
+            <input type="text" class="form-control" name="departmentName" placeholder="Введите название отдела" th:value="${department.departmentName}" th:field="*{departmentName}">
+            <div th:if="${#fields.hasErrors('departmentName')}" th:errors="*{departmentName}" style="color: red"></div>
+            <select name="church" class="custom-select custom-select-lg mb-3" th:value="${department.church}" th:field="*{church}">
+                <div th:each="element : ${church}">
+                    <option th:text="${element.churchName}" th:value="${element.id}"></option>
+                </div>
+            </select>
+            <button type="submit" class="btn btn-primary">Изменить</button>
+
+            <td>
+                <a href="/department" class="btn btn-danger">Вернуться</a>
+            </td>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

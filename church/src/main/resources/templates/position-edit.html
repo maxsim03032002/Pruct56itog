@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Должности</title>
+    <style>
+        main{
+            font-family: "Georgia", serif;
+
+        }
+        .table{
+            line-height: 1;
+            text-align:center;
+            font-family: "Georgia", serif;
+        }
+    </style>
+</head>
+<h1 align="center">Церковь</h1>
+<body>
+<div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <header th:insert="blocks/header :: headerdefault"/>
+    <h3 align="center">Редактирование должности</h3>
+
+    <div class="input-group mb-3">
+        <form th:action="@{'/position/' + ${position.id} + '/edit'}" method="post" th:object="${position}">
+            <p th:text="${position.positionName}"></p>
+            <input type="text" class="form-control" name="positionName" placeholder="Введите название должности" th:value="${position.positionName}" th:field="*{positionName}">
+            <div th:if="${#fields.hasErrors('positionName')}" th:errors="*{positionName}" style="color: red"></div>
+            <input type="number" class="form-control" name="salary" placeholder="Введите заработную плату" th:value="${position.salary}" th:field="*{salary}">
+            <div th:if="${#fields.hasErrors('salary')}" th:errors="*{salary}" style="color: red"></div>
+            <button type="submit" class="btn btn-primary">Изменить</button>
+
+            <td>
+                <a href="/position" class="btn btn-danger">Вернуться</a>
+            </td>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>

@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html xmlns:th="http://thymeleaf.org" lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+    <title>Роли</title>
+    <style>
+        main{
+            font-family: "Georgia", serif;
+
+        }
+        .table{
+            line-height: 1;
+            text-align:center;
+            font-family: "Georgia", serif;
+        }
+    </style>
+</head>
+<h1 align="center">Церковь</h1>
+<body>
+<div>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+
+    <header th:insert="blocks/header :: headerdefault"/>
+
+    <h3 align="center">Добавление роли</h3>
+
+    <div class="input-group mb-3">
+        <form action="/role/add" method="post" th:object="${role}">
+            <input type="text" class="form-control" name="roleName" placeholder="Введите роль"  th:field="*{roleName}">
+            <div th:if="${#fields.hasErrors('roleName')}" th:errors="*{roleName}" style="color: red"></div>
+            <button type="submit" class="btn btn-primary">Добавить</button>
+
+            <td>
+                <a href="/role" class="btn btn-danger">Вернуться</a>
+            </td>
+        </form>
+    </div>
+</div>
+
+</body>
+</html>
